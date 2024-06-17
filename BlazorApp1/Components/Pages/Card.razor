@@ -1,6 +1,8 @@
 ﻿@page "/card"
 @inject HttpClient httpClient
 @rendermode InteractiveServer
+@inject ILogger<Card> Logger
+
 <form>
     <label for="cardHolderName">Card Holder Name:</label>
     <input type="text" id="cardHolderName" @bind="@CardHolderName" />
@@ -39,7 +41,7 @@
             try
             {
                 var response = await httpClient.PostAsync("/card/submit", formData);
-
+                Logger.LogInformation("Sending HTTP request to /card/submit");
                 if (response.IsSuccessStatusCode)
                 {
                     Successmessage = "Submitted Successfully";

@@ -34,15 +34,20 @@ Welcome to your new app.
         {
             Headless=false,
             SlowMo=100,
+            Timeout=5000000
         });
 
 
         var page = await browser.NewPageAsync();
         await page.GotoAsync("https://localhost:7299/card");
         await page.FillAsync("#cardHolderName", "test");
-        await page.ClickAsync("form button[type='submit']");
+       // await page.ClickAsync("form button[type='submit']");
+        await page.ClickAsync("form button[type='submit']", new()
+            {
+                Timeout = 5000000
+                });
         await page.PauseAsync();
-      
+        
     }
 
     private void HumanInteraction()

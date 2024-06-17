@@ -9,7 +9,13 @@ namespace FraudDetect.Controllers
         [HttpPost]
         public IActionResult SubmitCard([FromForm] CardViewModel model)
         {
-            return View();
-        sdf}
+            var userAgent = Request.Headers["User-Agent"].ToString();
+            if (string.IsNullOrEmpty(userAgent) || userAgent.Contains("Playwright"))
+            {
+                return BadRequest("Bot requests are not allowed");
+            }
+
+            return RedirectToPage("/card");
+        }
     }
 }
