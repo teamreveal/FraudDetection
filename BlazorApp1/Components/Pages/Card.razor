@@ -1,4 +1,5 @@
 ﻿@page "/card"
+@inject HttpClient httpClient
 @rendermode InteractiveServer
 <form>
     <label for="cardHolderName">Card Holder Name:</label>
@@ -19,8 +20,39 @@
     private string CardNumber { get; set; }
     private string ExpiryDate { get; set; }
     private string Successmessage { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        httpClient.BaseAddress = new Uri("http://localhost:5132"); 
+        await base.OnInitializedAsync();
+    }
     private async Task SubmitForm()
     {
-        Successmessage = "Submitted Successfully";
+        var formData = new FormUrlEncodedContent(new Dictionary<string, string>
+        {
+            { "CardHolderName", CardHolderName },
+            { "CardNumber", CardNumber },
+            { "ExpiryDate", ExpiryDate }
+        });
+
+        
+            try
+            {
+                var response = await httpClient.PostAsync("/card/submit", formData);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    Successmessage = "Submitted Successfully";
+                }
+                else
+                {
+                    Successmessage = "Submission Failed";
+                }
+            }
+            catch (Exception ex)
+            {
+                Successmessage = $"Error: {ex.Message}";
+            }
+        
     }
 }
