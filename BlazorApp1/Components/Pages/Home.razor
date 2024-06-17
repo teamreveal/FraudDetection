@@ -1,0 +1,53 @@
+﻿@page "/"
+@inject NavigationManager NavigationManager
+
+@rendermode InteractiveServer
+@using Microsoft.Playwright
+injeec
+<PageTitle>Home</PageTitle>
+<form>
+    <label for="cardHolderName">Card Holder Name:</label>
+    <input type="text" id="cardHolderName" @bind="@CardHolderName" />
+
+    <label for="cardNumber">Card Number:</label>
+    <input type="text" id="cardNumber" @bind="@CardNumber" />
+
+    <label for="expiryDate">Expiry Date:</label>
+    <input type="text" id="expiryDate" @bind="@ExpiryDate" />
+
+    <button @onclick="AutomatedFormSubmit">Automated Submit</button>
+    <button @onclick="HumanInteraction">Human Interaction</button>
+</form>
+<h1>Hello, world!</h1>
+
+Welcome to your new app.
+@code {
+    private string CardHolderName { get; set; }
+    private string CardNumber { get; set; }
+    private string ExpiryDate { get; set; }
+    private async Task AutomatedFormSubmit()
+    {
+        // Perform automation using Playwright to submit the form programmatically
+        // Example using Playwright: (assuming you have Playwright set up and running)
+        using var playwright = await Playwright.CreateAsync();
+        await using var browser = await playwright.Chromium.LaunchAsync(new BrowserTypeLaunchOptions
+        {
+            Headless=false,
+            SlowMo=100,
+        });
+        
+
+        var page = await browser.NewPageAsync();
+        await page.GotoAsync("https://localhost:7299/card");
+       await page.FillAsync("#cardHolderName", "test");
+        await page.ClickAsync("form button[type='submit']");
+    }
+
+    private void HumanInteraction()
+    {
+        NavigationManager.NavigateTo("https://localhost:7299/mouseinteraction", true);
+        // Implement the desired behavior for the human interaction button
+        // This could involve showing UI elements, triggering notifications, etc.
+        // You can write the necessary code to perform the desired actions.
+    }
+}

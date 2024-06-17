@@ -1,0 +1,34 @@
+﻿@page "/mouseinteraction"
+@rendermode InteractiveServer
+
+<h3>Card Holder Information</h3>
+
+<form>
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name"><br><br>
+    <label for="cardNumber">Card Number:</label>
+    <input type="text" id="cardNumber" onblur="CheckMouseInteraction" name="cardNumber"><br><br>
+    <button @onclick="CheckMouseInteraction">Submit</button>
+</form>
+@inject IJSRuntime JS
+@code {
+    private async Task CheckMouseInteraction()
+    {
+        await JS.InvokeVoidAsync("alert", "Hello world");
+
+        var isAllowed = false;
+
+        if (!isAllowed)
+        {
+            await JS.InvokeAsync<string>("showAlert", "Hello world");
+            // Prevent form submission and display an alert
+            await JS.InvokeVoidAsync("alert", "Please");
+        }
+        else
+        {
+            // Proceed with form submission logic
+            // You can handle the form submission here
+            Console.WriteLine("Form submitted successfully!");
+        }
+    }
+}

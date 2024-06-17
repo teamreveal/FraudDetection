@@ -1,0 +1,18 @@
+﻿@page "/"
+@namespace JSInterops.Pages
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    Layout = "_Layout";
+}
+
+
+
+<script>
+    function showAlert(message) {
+        var element = document.getElementById("p-container");
+        var newElement = document.createElement("p");
+        newElement.innerHTML = "Appended paragraph";
+        element.append(newElement);
+        return alert(message);
+    }
+</script>

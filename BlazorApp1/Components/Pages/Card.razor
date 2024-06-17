@@ -1,0 +1,26 @@
+﻿@page "/card"
+@rendermode InteractiveServer
+<form>
+    <label for="cardHolderName">Card Holder Name:</label>
+    <input type="text" id="cardHolderName" @bind="@CardHolderName" />
+
+    <label for="cardNumber">Card Number:</label>
+    <input type="text" id="cardNumber" @bind="@CardNumber" />
+
+    <label for="expiryDate">Expiry Date:</label>
+    <input type="text" id="expiryDate" @bind="@ExpiryDate" />
+
+    <button @onclick="SubmitForm">Submit</button>
+    <p role="status">Current count: @Successmessage</p>
+
+</form>
+@code {
+    private string CardHolderName { get; set; }
+    private string CardNumber { get; set; }
+    private string ExpiryDate { get; set; }
+    private string Successmessage { get; set; }
+    private async Task SubmitForm()
+    {
+        Successmessage = "Submitted Successfully";
+    }
+}
