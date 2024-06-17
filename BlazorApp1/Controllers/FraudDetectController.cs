@@ -10,6 +10,6 @@ namespace FraudDetect.Controllers
         public IActionResult SubmitCard([FromForm] CardViewModel model)
         {
             return View();
-        }
+        sdf}
     }
 }

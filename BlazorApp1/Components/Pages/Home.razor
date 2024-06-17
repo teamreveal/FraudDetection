@@ -41,6 +41,7 @@ Welcome to your new app.
         await page.GotoAsync("https://localhost:7299/card");
         await page.FillAsync("#cardHolderName", "test");
         await page.ClickAsync("form button[type='submit']");
+        await page.PauseAsync();
       
     }
 
