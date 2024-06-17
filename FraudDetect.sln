@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.10.34916.146
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorApp1", "BlazorApp1\BlazorApp1.csproj", "{B6AA0722-DA58-4AE3-8B90-01D3514D9D4A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FraudDetect", "BlazorApp1\FraudDetect.csproj", "{B6AA0722-DA58-4AE3-8B90-01D3514D9D4A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

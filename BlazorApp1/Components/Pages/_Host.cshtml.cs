@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace BlazorApp1.Components.Pages
+namespace FraudDetect.Components.Pages
 {
     public class _HostModel : PageModel
     {
